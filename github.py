@@ -30,12 +30,15 @@ def kursy():
     bs = BeautifulSoup(page.content, 'html.parser')
     EUR = bs.find('span', class_='bem-single-rate-box__item-rate').get_text().strip()
     EUR_zmiana = bs.find('span', class_='bem-single-rate-box__direction ')
+    kolor_EUR = "black"
     if EUR_zmiana == None:
         EUR_zmiana = bs.find('span', class_='bem-single-rate-box__direction is-up')
         if EUR_zmiana != None:
             EUR_zmiana = "+" + bs.find('span', class_='bem-single-rate-box__direction is-up').get_text().strip()
+            kolor_EUR = "green"
         elif EUR_zmiana == None:
             EUR_zmiana = bs.find('span', class_='bem-single-rate-box__direction is-down').get_text().strip()
+            kolor_EUR = "red"
         else:
             print("Coś nie działa z zmiana EUR")
     URL = 'https://internetowykantor.pl/kurs-dolara-nbp/'
@@ -43,17 +46,20 @@ def kursy():
     bs = BeautifulSoup(page.content, 'html.parser')
     USD = bs.find('span', class_='bem-single-rate-box__item-rate').get_text().strip()
     USD_zmiana = bs.find('span', class_='bem-single-rate-box__direction ')
+    kolor_USD = "black"
     if USD_zmiana == None:
         USD_zmiana = bs.find('span', class_='bem-single-rate-box__direction is-up')
         if USD_zmiana != None:
             USD_zmiana = "+" + bs.find('span', class_='bem-single-rate-box__direction is-up').get_text().strip()
+            kolor_USD = "green"
         elif USD_zmiana == None:
             USD_zmiana = bs.find('span', class_='bem-single-rate-box__direction is-down').get_text().strip()
+            kolor_USD = "red"
         else:
             print("Coś nie działa z zmiana USD")
-    return EUR, EUR_zmiana, USD, USD_zmiana
+    return EUR, EUR_zmiana, kolor_EUR, USD, USD_zmiana, kolor_USD
 
-EUR, EUR_zmiana, USD, USD_zmiana = kursy()
+EUR, EUR_zmiana, kolor_EUR, USD, USD_zmiana, kolor_USD = kursy()
 
 def wiadomosci():
     URL = 'https://wiadomosci.gazeta.pl/wiadomosci/0,0.html'
@@ -133,12 +139,11 @@ html = '''
 			</tr>
 			<tr>
 				<td width="15%" valign="top">
-					<h3>Kurs EUR/PLN: <br>
-						''' + str(EUR) + ''' (''' + str(EUR_zmiana) + ''')
-						<br>
-						<br>
-						Kurs USD/PLN: <br>
-						''' + str(USD) + ''' (''' + str(USD_zmiana) + ''')
+					<h3>Kurs EUR/PLN: </h3>
+					<h3 style="color:'''+str(kolor_EUR)+''';">''' + str(EUR) + ''' (''' + str(EUR_zmiana) + ''')</h3>
+					<br>
+					<h3>Kurs USD/PLN: </h3>
+					<h3 style="color:'''+str(kolor_USD)+''';">''' + str(USD) + ''' (''' + str(USD_zmiana) + ''')</h3>
 					</h3>
 
 				</td>
