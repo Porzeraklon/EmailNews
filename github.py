@@ -5,9 +5,9 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from datetime import date
 
-sender = input("Podaj swojego maila")
-passwd = input("Podaj hasło")
-rec = input("Podaj maila odbiorcy")
+sender = input("Podaj swojego maila: ")
+passwd = input("Podaj hasło: ")
+rec = input("Podaj maila odbiorcy: ")
 subject = "Prognoza"
 Miasto = 'Gdańsk'
 today = date.today()
