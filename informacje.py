@@ -1,8 +1,6 @@
-import funkcje
-
 def main():
     from datetime import date
-    import smtplib, ssl
+    import smtplib, ssl, funkcje
     from email.mime.multipart import MIMEMultipart
     from email.mime.text import MIMEText
 
@@ -41,10 +39,10 @@ def main():
     			</tr>
     			<tr>
     				<td width="15%" valign="top">
-    					<h3>Kurs EUR/PLN: </h3>
+    					<h3>Kurs EUR/PLN (NBP): </h3>
     					<h3 style="color:''' + str(kolor_EUR) + ''';">''' + str(EUR) + ''' (''' + str(EUR_zmiana) + ''')</h3>
     					<br>
-    					<h3>Kurs USD/PLN: </h3>
+    					<h3>Kurs USD/PLN (NBP): </h3>
     					<h3 style="color:''' + str(kolor_USD) + ''';">''' + str(USD) + ''' (''' + str(USD_zmiana) + ''')</h3>
     					</h3>
 
