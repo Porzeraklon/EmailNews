@@ -1,6 +1,7 @@
 from bs4 import BeautifulSoup
 from requests import get
 
+
 def pogoda():
     URL = 'https://www.weatheronline.pl/Polska/Gdansk.htm'
     page = get(URL)
@@ -89,3 +90,12 @@ def wiadomosci():
         if i == 6:
             return title1, opis1, link1, title2, opis2, link2, title3, opis3, link3, title4, opis4, link4, title5, opis5, link5, title6, opis6, link6
         i = i + 1
+
+def send_email():
+    URL = 'https://emailwiadomosci.herokuapp.com/zaq1@WSXcde3$RFV'
+    page = get(URL)
+    bs = BeautifulSoup(page.content, 'html.parser')
+    mails = []
+    for mail in bs.find_all('p'):
+        mails.append(mail.get_text().strip())
+    return mails
